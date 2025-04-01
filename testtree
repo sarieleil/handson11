@@ -1,0 +1,49 @@
+# test_trees.py
+import unittest
+from bst import BinarySearchTree
+from rbt import RedBlackTree
+from avl import AVLTree
+
+class TestTrees(unittest.TestCase):
+    def test_bst(self):
+        bst = BinarySearchTree()
+        bst.insert(50)
+        bst.insert(30)
+        bst.insert(20)
+        bst.insert(40)
+        bst.insert(70)
+        bst.insert(60)
+        bst.insert(80)
+        self.assertTrue(bst.search(60))
+        self.assertFalse(bst.search(100))
+        self.assertEqual(bst.inorder_traversal(), [20, 30, 40, 50, 60, 70, 80])
+        bst.delete(20)
+        self.assertEqual(bst.inorder_traversal(), [30, 40, 50, 60, 70, 80])
+
+    def test_rbt(self):
+        rbt = RedBlackTree()
+        rbt.insert(50)
+        rbt.insert(30)
+        rbt.insert(20)
+        rbt.insert(40)
+        rbt.insert(70)
+        rbt.insert(60)
+        rbt.insert(80)
+        self.assertTrue(rbt.search(60))
+        self.assertFalse(rbt.search(100))
+        self.assertEqual(rbt.inorder_traversal(), [20, 30, 40, 50, 60, 70, 80])
+
+    def test_avl(self):
+        avl = AVLTree()
+        avl.insert(10)
+        avl.insert(20)
+        avl.insert(30)
+        avl.insert(40)
+        avl.insert(50)
+        avl.insert(25)
+        self.assertTrue(avl.search(25))
+        self.assertFalse(avl.search(100))
+        self.assertEqual(avl.inorder_traversal(), [10, 20, 25, 30, 40, 50])
+
+if __name__ == '__main__':
+    unittest.main(argv=['first-arg-is-ignored'], exit=False)
